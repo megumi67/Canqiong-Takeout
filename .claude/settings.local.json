@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn compile *)",
+      "Bash(java -version)",
+      "Read(//e/Maven/apache-maven-3.9.14/bin/**)",
+      "Bash(/e/Maven/apache-maven-3.9.14/bin/mvn *)",
+      "Read(//e/IDEA/IntelliJ IDEA 2024.2.4/plugins/maven/lib/maven3/bin//**)",
+      "Read(//e/IDEA/IntelliJ IDEA 2024.2.4/plugins/maven/lib/maven3//**)",
+      "Bash(\"/e/IDEA/IntelliJ IDEA 2024.2.4/plugins/maven/lib/maven3/bin/mvn\" compile)",
+      "Bash(cmd.exe *)",
+      "Bash(curl -L -o \"/tmp/apache-maven-3.9.14-bin.zip\" \"https://dlcdn.apache.org/maven/maven-3/3.9.14/binaries/apache-maven-3.9.14-bin.zip\")",
+      "Bash(curl *)",
+      "Bash(unzip -o \"/tmp/apache-maven-3.9.14-bin.zip\" -d \"E:/Maven/\")",
+      "Bash(export PATH=\"E:/Maven/apache-maven-3.9.14/bin:$PATH\")",
+      "Bash(mvn --version)",
+      "Bash(mvn clean *)"
+    ]
+  }
+}
