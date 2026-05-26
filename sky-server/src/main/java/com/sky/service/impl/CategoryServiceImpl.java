@@ -122,8 +122,8 @@ public class CategoryServiceImpl implements CategoryService {
     @ApiOperation("根据类型查询分类")
     @Override
     public List<Category> selectByType(Integer type) {
-        categoryMapper.selectByType(type);
-        return ;
+        List<Category> categoryList = categoryMapper.selectByType(type);
+        return categoryList;
     }
 
 
