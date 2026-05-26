@@ -101,8 +101,7 @@ public class CategoryController {
     @ApiOperation("根据类型查询分类")
     public Result<List<Category>> selectByType(@RequestParam Integer type) {
           log.info("需要查询的分类为：{}",type);
-          categoryService.selectByType(type);
-
-          return Result.success();
+        List<Category> categoryList = categoryService.selectByType(type);
+        return Result.success(categoryList);
     }
 }
