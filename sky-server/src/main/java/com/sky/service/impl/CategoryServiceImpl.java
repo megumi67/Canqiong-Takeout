@@ -2,12 +2,16 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.constant.MessageConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
 import com.sky.entity.Employee;
+import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.CategoryMapper;
+import com.sky.mapper.DishMapper;
+import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CategoryService;
@@ -24,6 +28,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryMapper categoryMapper;
 
+    @Autowired
+    DishMapper dishMapper;
+
+    @Autowired
+    SetmealMapper setmealMapper;
 
     /**
      * 新增分类
@@ -59,9 +68,24 @@ public class CategoryServiceImpl implements CategoryService {
     @ApiOperation("删除分类")
     @Override
     public void delete(Long id) {
-        categoryMapper.delete(id);
+        //查看分类下是否有菜品
+          Integer count = dishMapper.selectCount(id);
+          if(count > 0) {
+              //当前分类下有菜品，不能删除，抛出异常
+              throw new DeletionNotAllowedException(MessageConstant.CATEGORY_BE_RELATED_BY_DISH);
+          }
 
+         //查看分类下是否有套餐
+        count = setmealMapper.selectCount(id);
+          if(count > 0) {
+              //当前分类下有菜品，不能删除，抛出异常
+              throw new DeletionNotAllowedException(MessageConstant.CATEGORY_BE_RELATED_BY_SETMEAL);
+          }
+
+          //删除
+        categoryMapper.deleteById(id);
     }
+
 
 
     /**
