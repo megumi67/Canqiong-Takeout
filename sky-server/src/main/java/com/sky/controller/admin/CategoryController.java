@@ -104,4 +104,8 @@ public class CategoryController {
         List<Category> categoryList = categoryService.selectByType(type);
         return Result.success(categoryList);
     }
+
+
+
+
 }
